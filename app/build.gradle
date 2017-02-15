@@ -4,13 +4,18 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
 
+    dataBinding {
+        enabled = true
+    }
+
     defaultConfig {
-        applicationId "mvvm.pgssoft.com.mvvm"
+        applicationId "com.pgssoft.mvvm"
         minSdkVersion 21
         targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -20,7 +25,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
+    compile project(path: ':apimodel')
+    compile project(path: ':dbmodel')
+
     compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:recyclerview-v7:24.2.1'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.okhttp3:okhttp:3.5.0'
+    compile 'net.danlew:android.joda:2.9.5.1'
 }
