@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class ApiTable {
     @SerializedName("table")
-    private String name;
+    private String id;
 
     @SerializedName("no")
     private String number;
@@ -21,14 +21,14 @@ public class ApiTable {
     private List<ApiRate> apiRates;
 
     public ApiTable(String name, String number, String lastUpdate, List<ApiRate> apiRates) {
-        this.name = name;
+        this.id = name;
         this.number = number;
         this.lastUpdate = lastUpdate;
         this.apiRates = apiRates;
     }
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return id;
     }
 
     public String getNumber() {

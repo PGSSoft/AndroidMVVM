@@ -1,4 +1,4 @@
-package com.pgssoft.mvvm.services;
+package com.pgssoft.mvvm.services.mock;
 
 import com.pgssoft.mvvm.constants.DateFormats;
 import com.pgssoft.mvvm.model.api.ApiRate;
@@ -21,7 +21,8 @@ public class ObjectMapper implements MapperService {
 
     @Override
     public Table map(ApiTable apiApiTable) {
-        return new Table(apiApiTable.getName(), apiApiTable.getNumber(), DateTime.parse(apiApiTable.getLastUpdate(),
-                        DateTimeFormat.forPattern(DateFormats.LAST_UPDATE_DATE_FORMAT)).toDate());
+        return new Table(apiApiTable.getId(), apiApiTable.getNumber(),
+                DateTime.parse(apiApiTable.getLastUpdate(),
+                DateTimeFormat.forPattern(DateFormats.LAST_UPDATE_DATE_FORMAT)).toDate());
     }
 }

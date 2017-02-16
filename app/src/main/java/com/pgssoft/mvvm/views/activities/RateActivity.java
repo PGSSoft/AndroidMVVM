@@ -12,11 +12,12 @@ import com.pgssoft.mvvm.R;
 import com.pgssoft.mvvm.databinding.ActivityRateBinding;
 import com.pgssoft.mvvm.services.ServiceProvider;
 import com.pgssoft.mvvm.viewmodels.RateActivityViewModel;
+import com.pgssoft.mvvm.viewmodels.interfaces.IRateActivityAccess;
 
 /**
  * Created by bstokrocki on 31.01.2017.
  */
-public class RateActivity extends AppCompatActivity {
+public class RateActivity extends BaseActivity implements IRateActivityAccess {
     public static final String EXTRA_RATE_ID = "EXTRA_RATE_ID";
 
     private ServiceProvider serviceProvider;

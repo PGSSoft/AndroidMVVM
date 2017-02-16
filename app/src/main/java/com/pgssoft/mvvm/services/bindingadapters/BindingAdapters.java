@@ -1,4 +1,4 @@
-package com.pgssoft.mvvm.services;
+package com.pgssoft.mvvm.services.bindingadapters;
 
 import android.databinding.BindingAdapter;
 import android.databinding.InverseBindingAdapter;

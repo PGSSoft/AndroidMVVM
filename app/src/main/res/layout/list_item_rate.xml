@@ -9,11 +9,36 @@
 
     </data>
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@{viewModel.rateName}"
-        android:onClick="@{() -> viewModel.itemClicked()}"
-        android:padding="32dp"/>
+        android:padding="16dp"
+        android:onClick="@{() -> viewModel.itemClicked()}">
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:text="@{viewModel.rate.currencyCode}"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:text="@{viewModel.rate.currencyName}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:currencyText="@{viewModel.rate.rate}"
+            android:textColor="@{viewModel.isGoingUp ? @android:color/holo_red_dark : @android:color/holo_green_dark}"/>
+
+    </LinearLayout>
 
 </layout>

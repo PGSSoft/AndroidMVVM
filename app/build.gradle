@@ -33,4 +33,5 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.okhttp3:okhttp:3.5.0'
     compile 'net.danlew:android.joda:2.9.5.1'
+    compile 'org.modelmapper:modelmapper:0.7.5'
 }

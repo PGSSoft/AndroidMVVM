@@ -19,7 +19,7 @@ public class MockApiService implements ApiService {
         ArrayList<ApiRate> apiRates = new ArrayList<>();
 
         apiRates.add(new ApiRate("USD", "dolar amerykański", 4.04));
-        apiRates.add(new ApiRate("EUR", "duro", 4.32));
+        apiRates.add(new ApiRate("EUR", "euro", 4.32));
         apiRates.add(new ApiRate("CHF", "frank szwajcarski", 4.05));
         apiRates.add(new ApiRate("GBP", "funt szterling", 4.05));
         apiRates.add(new ApiRate("UAH", "hrywna (Ukraina)", 0.15));

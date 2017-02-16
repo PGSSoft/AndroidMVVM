@@ -1,4 +1,4 @@
-package com.pgssoft.mvvm.services;
+package com.pgssoft.mvvm.services.api;
 
 import com.pgssoft.mvvm.model.api.ApiTable;
 

@@ -2,10 +2,12 @@ package com.pgssoft.mvvm.viewmodels;
 
 import com.pgssoft.mvvm.model.api.ApiTable;
 import com.pgssoft.mvvm.model.database.Rate;
+import com.pgssoft.mvvm.model.database.Table;
 import com.pgssoft.mvvm.services.interfaces.ApiService;
 import com.pgssoft.mvvm.services.interfaces.ApiServiceCallback;
+import com.pgssoft.mvvm.services.interfaces.MapperService;
 import com.pgssoft.mvvm.services.interfaces.Repository;
-import com.pgssoft.mvvm.views.activities.interfaces.IMainActivityAccess;
+import com.pgssoft.mvvm.viewmodels.interfaces.IMainActivityAccess;
 import com.pgssoft.mvvm.views.adapters.interfaces.handlers.RateItemHandler;
 import com.pgssoft.mvvm.views.adapters.interfaces.providers.BaseItemProvider;
 
@@ -33,6 +35,7 @@ public class MainActivityViewModel implements BaseItemProvider<Rate>, RateItemHa
     }
 
     private void loadRates() {
+        activityAccess.showProgressIndication(false);
         apiService.loadRates(new ApiServiceCallback<ApiTable[]>() {
             @Override
             public void onSuccess(ApiTable[] apiTables) {
@@ -40,12 +43,12 @@ public class MainActivityViewModel implements BaseItemProvider<Rate>, RateItemHa
                 rates = repository.getAllRates();
 
                 activityAccess.displayRates(MainActivityViewModel.this, MainActivityViewModel.this);
-                activityAccess.hideProgressIndicator();
+                activityAccess.hideProgressIndication();
             }
 
             @Override
             public void onFailure(Throwable t) {
-                activityAccess.hideProgressIndicator();
+                activityAccess.hideProgressIndication();
             }
         });
     }

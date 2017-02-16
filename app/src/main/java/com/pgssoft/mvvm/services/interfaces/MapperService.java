@@ -6,7 +6,7 @@ import com.pgssoft.mvvm.model.database.Rate;
 import com.pgssoft.mvvm.model.database.Table;
 
 /**
- * Created by bartooo on 31.01.2017.
+ * Created by bstokrocki on 31.01.2017.
  */
 public interface MapperService {
     Rate map(ApiRate apiRate);
