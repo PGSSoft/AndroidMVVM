@@ -1,4 +1,4 @@
-package com.pgssoft.mvvm.constants;
+package com.pgssoft.mvvm.constant;
 
 /**
  * Created by bstokrocki on 31.01.2017.

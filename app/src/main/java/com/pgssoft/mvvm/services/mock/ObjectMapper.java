@@ -1,10 +1,11 @@
 package com.pgssoft.mvvm.services.mock;
 
-import com.pgssoft.mvvm.constants.DateFormats;
+import com.pgssoft.mvvm.constant.DateFormats;
 import com.pgssoft.mvvm.model.api.ApiRate;
 import com.pgssoft.mvvm.model.api.ApiTable;
 import com.pgssoft.mvvm.model.database.Rate;
 import com.pgssoft.mvvm.model.database.Table;
+import com.pgssoft.mvvm.models.dto.RateDto;
 import com.pgssoft.mvvm.services.interfaces.MapperService;
 
 import org.joda.time.DateTime;
@@ -24,5 +25,10 @@ public class ObjectMapper implements MapperService {
         return new Table(apiApiTable.getId(), apiApiTable.getNumber(),
                 DateTime.parse(apiApiTable.getLastUpdate(),
                 DateTimeFormat.forPattern(DateFormats.LAST_UPDATE_DATE_FORMAT)).toDate());
+    }
+
+    @Override
+    public RateDto map(Rate rate) {
+        return new RateDto(rate.getCurrencyCode(), rate.getCurrencyName(), rate.getRate());
     }
 }

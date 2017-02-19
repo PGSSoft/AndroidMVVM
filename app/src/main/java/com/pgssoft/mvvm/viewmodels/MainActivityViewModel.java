@@ -16,7 +16,8 @@ import java.util.List;
 /**
  * Created by bstokrocki on 29.01.2017.
  */
-public class MainActivityViewModel implements BaseItemProvider<Rate>, RateItemHandler {
+public class MainActivityViewModel extends BaseActivityViewModel
+        implements BaseItemProvider<Rate>, RateItemHandler {
     private final IMainActivityAccess activityAccess;
     private final ApiService apiService;
     private final Repository repository;
@@ -61,5 +62,19 @@ public class MainActivityViewModel implements BaseItemProvider<Rate>, RateItemHa
     @Override
     public void showRateDetails(Rate rate) {
         activityAccess.openRateDetailsScreen(rate);
+    }
+
+    public String getLogoUrl() {
+        return "http://static.goldenline.pl/firm_logo/090/firm_36826_6d1445_big.jpg";
+    }
+
+    @Override
+    public void onStart() {
+
+    }
+
+    @Override
+    public void onStop() {
+
     }
 }

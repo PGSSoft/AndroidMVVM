@@ -1,4 +1,7 @@
 <resources>
-    <string name="app_name">MVVM</string>
+    <string name="app_name">Android MVVM</string>
     <string name="title_loading">Loading</string>
+    <string name="label_precision_level">Precision level</string>
+    <string name="label_calculator">Calculator</string>
+    <string name="label_live_rate">Live rate</string>
 </resources>

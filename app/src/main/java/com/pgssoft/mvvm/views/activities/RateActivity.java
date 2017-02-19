@@ -17,7 +17,8 @@ import com.pgssoft.mvvm.viewmodels.interfaces.IRateActivityAccess;
 /**
  * Created by bstokrocki on 31.01.2017.
  */
-public class RateActivity extends BaseActivity implements IRateActivityAccess {
+public class RateActivity extends BaseViewModelActivity<RateActivityViewModel>
+        implements IRateActivityAccess {
     public static final String EXTRA_RATE_ID = "EXTRA_RATE_ID";
 
     private ServiceProvider serviceProvider;
@@ -27,12 +28,17 @@ public class RateActivity extends BaseActivity implements IRateActivityAccess {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle(R.string.label_calculator);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_rate);
-        serviceProvider = MVVMApplication.getServiceProvider();
 
         String rateId = getIntent().getStringExtra(EXTRA_RATE_ID);
+        ServiceProvider serviceProvider = MVVMApplication.getServiceProvider();
 
-        viewModel = new RateActivityViewModel(serviceProvider.getRepository(), rateId);
+        viewModel = new RateActivityViewModel(serviceProvider.getRepository(),
+                serviceProvider.getSchedulerService(), rateId);
+
         binding.setViewModel(viewModel);
     }
 

@@ -3,6 +3,7 @@ package com.pgssoft.mvvm.services.mock;
 import com.pgssoft.mvvm.model.api.ApiTable;
 import com.pgssoft.mvvm.model.database.Rate;
 import com.pgssoft.mvvm.model.database.Table;
+import com.pgssoft.mvvm.models.dto.RateDto;
 import com.pgssoft.mvvm.services.interfaces.Repository;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class MockRepository implements Repository {
     }
 
     @Override
-    public Rate findRateById(String rateId) {
-        return new Rate("USD", null, "dolar amerykański", 4.04);
+    public RateDto findRateById(String rateId) {
+        return new RateDto("USD", "dolar amerykański", 4.04);
     }
 }

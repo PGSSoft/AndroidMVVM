@@ -1,18 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-    <FrameLayout
+
+    <data>
+
+        <variable
+            name="view"
+            type="com.pgssoft.mvvm.views.widgets.ExchangeWidget" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editable_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="16dp">
 
-        <Button
-            android:id="@+id/non_editable_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            <EditText
+                android:id="@+id/editable_view_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:gravity="center"
+                android:text="@={view.firstInputValue}"
+                android:visibility="@{view.firstInputActive ? View.VISIBLE : View.GONE}"/>
 
-    </FrameLayout>
+            <Button
+                android:id="@+id/non_editable_view_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{view.firstInputValue}"
+                android:visibility="@{view.firstInputActive ? View.GONE : View.VISIBLE}"
+                android:onClick="@{view::firstInputActivated}"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="16dp">
+
+            <EditText
+                android:id="@+id/editable_view_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:gravity="center"
+                android:text="@={view.secondInputValue}"
+                android:visibility="@{view.firstInputActive ? View.GONE : View.VISIBLE}"/>
+
+            <Button
+                android:id="@+id/non_editable_view_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{view.secondInputValue}"
+                android:visibility="@{view.firstInputActive ? View.VISIBLE : View.GONE}"
+                android:onClick="@{view::secondInputActivated}"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
 </layout>

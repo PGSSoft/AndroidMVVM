@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,75 +11,93 @@
     </data>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:orientation="vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3">
+            android:padding="16dp">
 
-            <TextView
-                style="@style/TextAppearance.AppCompat.Body2"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="PLN"/>
+                android:layout_weight="3">
 
-            <EditText
-                android:layout_width="match_parent"
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="PLN"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:inputType="number"
-                android:text="@={viewModel.plnAmount}"
-                tools:text="1.00"/>
+                android:layout_weight="3">
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    tools:text="4.04"
+                    android:currencyText="@{viewModel.rate.rate}"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3">
+
+                <TextView
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    tools:text="USD"
+                    android:text="@{viewModel.rate.currencyCode}"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0dp"
+        <com.pgssoft.mvvm.views.widgets.ExchangeWidget
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="3">
+            android:layout_marginTop="32dp"
+            android:precisionLevel="@{viewModel.precisionLevel}"
+            android:rate="@{viewModel.rate.rate}"/>
 
-            <TextView
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                tools:text="4.04"
-                android:currencyText="@{viewModel.rate.rate}"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="0dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="3">
+            android:layout_marginTop="42dp"
+            android:text="@string/label_precision_level"/>
 
-            <TextView
-                style="@style/TextAppearance.AppCompat.Body2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                tools:text="USD"
-                android:text="@{viewModel.rate.currencyCode}"/>
+        <com.pgssoft.mvvm.views.widgets.PrecisionPicker
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            bind:precisionLevel="@={viewModel.precisionLevel}"
+            android:maxPrecisionLevel="@{viewModel.maxPrecisionLevel}"/>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:inputType="number"
-                android:text="@={viewModel.currencyAmount}"
-                tools:text="1.00"/>
-
-        </LinearLayout>
+        <Switch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/label_live_rate"
+            android:layout_marginTop="42dp"
+            android:onCheckedChanged="@{(switch, checked) -> viewModel.liveRateCheckChanged(checked)}"/>
 
     </LinearLayout>
 </layout>

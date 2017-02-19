@@ -6,6 +6,7 @@ import com.pgssoft.mvvm.model.api.ApiRate;
 import com.pgssoft.mvvm.model.api.ApiTable;
 import com.pgssoft.mvvm.model.database.Rate;
 import com.pgssoft.mvvm.model.database.Table;
+import com.pgssoft.mvvm.models.dto.RateDto;
 import com.pgssoft.mvvm.services.interfaces.MapperService;
 import com.pgssoft.mvvm.services.interfaces.Repository;
 
@@ -53,11 +54,13 @@ public class DBHandler implements Repository {
     }
 
     @Override
-    public Rate findRateById(String rateId) {
+    public RateDto findRateById(String rateId) {
         try {
-            return dbHelper.getRateDao().queryBuilder().where()
+            Rate rate = dbHelper.getRateDao().queryBuilder().where()
                     .eq(Rate.FIELD_ID, rateId)
                     .queryForFirst();
+
+            return rate != null ? mapperService.map(rate) : null;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

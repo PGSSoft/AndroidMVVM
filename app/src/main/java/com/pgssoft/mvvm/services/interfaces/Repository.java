@@ -4,6 +4,7 @@ package com.pgssoft.mvvm.services.interfaces;
 import com.pgssoft.mvvm.model.api.ApiTable;
 import com.pgssoft.mvvm.model.database.Rate;
 import com.pgssoft.mvvm.model.database.Table;
+import com.pgssoft.mvvm.models.dto.RateDto;
 
 import java.util.List;
 
@@ -15,5 +16,5 @@ public interface Repository {
 
     List<Rate> getAllRates();
 
-    Rate findRateById(String rateId);
+    RateDto findRateById(String rateId);
 }

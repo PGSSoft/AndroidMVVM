@@ -2,10 +2,15 @@ package com.pgssoft.mvvm.services.bindingadapters;
 
 import android.databinding.BindingAdapter;
 import android.databinding.InverseBindingAdapter;
+import android.databinding.InverseBindingListener;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.pgssoft.mvvm.views.widgets.PrecisionPicker;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -18,30 +23,27 @@ public class BindingAdapters {
     @BindingAdapter("android:currencyText")
     public static void setCurrencyText(TextView view, Double value) {
         try {
-            view.setText(Double.toString(value));
+            view.setText(String.format("%.02f", value));
         } catch (NumberFormatException ex) {
-            view.setText("0.00");
+            //Parsing failed, do nothing
         }
     }
 
-    @BindingAdapter("android:text")
-    public static void setText(EditText view, Integer value) {
-        try {
-            int oldValue = Integer.parseInt(view.getText().toString().trim().replace(".", ""));
-            if (!value.equals(oldValue)) {
-                view.setText(String.format("%d.%d", value / 100, value % 100));
-            }
-        } catch (NumberFormatException ex) {
-            view.setText("0.00");
-        }
+    @BindingAdapter("bind:image")
+    public static void setImage(ImageView view, String imageUrl) {
+        ImageLoader.getInstance().displayImage(imageUrl, view);
     }
 
-    @InverseBindingAdapter(attribute = "android:text")
-    public static int getText(EditText view) {
-        try {
-            return Integer.parseInt(view.getText().toString().trim().replace(".", ""));
-        } catch (NumberFormatException ex) {
-            return 0;
+    @BindingAdapter("precisionLevelAttrChanged")
+    public static void addPrecisionLevelListener(PrecisionPicker view,
+                                                 final InverseBindingListener listener) {
+        if (listener != null) {
+            view.addListener(new PrecisionPicker.PrecisionLevelChangeListener() {
+                @Override
+                public void precisionLevelChanged(int precisionLevel) {
+                    listener.onChange();
+                }
+            });
         }
     }
 }
