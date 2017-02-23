@@ -20,7 +20,6 @@ import java.util.HashSet;
 
 @InverseBindingMethods({
         @InverseBindingMethod(type = PrecisionPicker.class, attribute = "precisionLevel"),
-
 })
 public class PrecisionPicker extends LinearLayout {
     private View previousSelectedLevel;

@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by bstokrocki on 30.01.2017.
  */
-public abstract class BindingRecyclerAdapter<TData, TViewModel extends BaseListItemViewModel<TData>>
+public abstract class BindingRecyclerAdapter<TData, TViewModel extends BaseListItemViewModel>
         extends RecyclerView.Adapter<BindingViewHolder<TViewModel>> {
     private Context context;
     private List<TData> dataItems;
