@@ -93,7 +93,12 @@ public class ExchangeWidget extends FrameLayout {
     public void setRate(Double rate) {
         if (rate != null) {
             this.rate = rate;
-            calculateSecondInput();
+
+            if (firstInputActive.get()) {
+                calculateSecondInput();
+            } else {
+                calculateFirstInput();
+            }
         }
     }
 
