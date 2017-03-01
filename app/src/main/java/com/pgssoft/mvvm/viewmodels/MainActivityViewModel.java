@@ -63,7 +63,7 @@ public class MainActivityViewModel extends BaseActivityViewModel
     }
 
     public String getLogoUrl() {
-        return "https://github.com/bstokrockipgs/AndroidMVVM/blob/master/app/src/main/res/drawable-xxhdpi/pgs.png";
+        return "https://raw.githubusercontent.com/PGSSoft/AndroidMVVM/master/app/src/main/res/drawable-xxhdpi/pgs.png";
     }
 
     @Override
