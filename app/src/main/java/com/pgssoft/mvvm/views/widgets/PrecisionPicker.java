@@ -1,6 +1,7 @@
 package com.pgssoft.mvvm.views.widgets;
 
 import android.content.Context;
+import android.databinding.InverseBindingListener;
 import android.databinding.InverseBindingMethod;
 import android.databinding.InverseBindingMethods;
 import android.util.AttributeSet;
@@ -16,6 +17,14 @@ import java.util.HashSet;
 
 /**
  * Created by bstokrocki on 18.02.2017.
+ */
+
+/**
+ * Custom view with 2-way data binding. To make 2-way binding work we need:
+ * - getter and setter for bindable field ({@link #precisionLevel} in our case),
+ * - InverseBindingMethod annotation for view class defining class of the view and bindable attribute name,
+ * - BindingAdapter for view class, which tells Data Binding library how to register it's listener
+ *   (implementation: {@link com.pgssoft.mvvm.services.bindingadapters.BindingAdapters#addPrecisionLevelListener(PrecisionPicker, InverseBindingListener)})
  */
 
 @InverseBindingMethods({

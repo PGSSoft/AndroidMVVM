@@ -2,10 +2,8 @@ package com.pgssoft.mvvm.viewmodels;
 
 import com.pgssoft.mvvm.model.api.ApiTable;
 import com.pgssoft.mvvm.model.database.Rate;
-import com.pgssoft.mvvm.model.database.Table;
 import com.pgssoft.mvvm.services.interfaces.ApiService;
 import com.pgssoft.mvvm.services.interfaces.ApiServiceCallback;
-import com.pgssoft.mvvm.services.interfaces.MapperService;
 import com.pgssoft.mvvm.services.interfaces.Repository;
 import com.pgssoft.mvvm.viewmodels.interfaces.IMainActivityAccess;
 import com.pgssoft.mvvm.views.adapters.interfaces.handlers.RateItemHandler;
@@ -65,7 +63,7 @@ public class MainActivityViewModel extends BaseActivityViewModel
     }
 
     public String getLogoUrl() {
-        return "http://static.goldenline.pl/firm_logo/090/firm_36826_6d1445_big.jpg";
+        return "https://github.com/bstokrockipgs/AndroidMVVM/blob/master/app/src/main/res/drawable-xxhdpi/pgs.png";
     }
 
     @Override

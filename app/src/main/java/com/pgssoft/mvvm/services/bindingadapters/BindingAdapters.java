@@ -1,19 +1,12 @@
 package com.pgssoft.mvvm.services.bindingadapters;
 
 import android.databinding.BindingAdapter;
-import android.databinding.InverseBindingAdapter;
 import android.databinding.InverseBindingListener;
-import android.text.TextWatcher;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.pgssoft.mvvm.views.widgets.PrecisionPicker;
-
-import java.text.NumberFormat;
-import java.text.ParseException;
 
 /**
  * Created by bstokrocki on 01.02.2017.
@@ -34,6 +27,11 @@ public class BindingAdapters {
         ImageLoader.getInstance().displayImage(imageUrl, view);
     }
 
+    /**
+     * This binding adapter allows Data Binding framework to register it's listener in PrecisionPicker.
+     * Adapter is required to "translate" InverseBindingListener to PrecisionPicker.PrecisionLevelChangeListener,
+     * which is used by PrecisionPicker.
+     */
     @BindingAdapter("precisionLevelAttrChanged")
     public static void addPrecisionLevelListener(PrecisionPicker view,
                                                  final InverseBindingListener listener) {
