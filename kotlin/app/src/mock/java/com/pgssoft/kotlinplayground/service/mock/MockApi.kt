@@ -1,4 +1,4 @@
-package mock
+package com.pgssoft.kotlinplayground.service.mock
 
 import com.pgssoft.kotlinplayground.model.api.ApiTable
 import com.pgssoft.kotlinplayground.service.iface.ApiService

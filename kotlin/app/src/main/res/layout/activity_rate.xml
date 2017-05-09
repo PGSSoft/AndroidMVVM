@@ -45,12 +45,13 @@
                 android:layout_weight="3">
 
                 <TextView
+                    android:id="@+id/rate"
                     style="@style/TextAppearance.AppCompat.Body1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:currencyText="@{viewModel.rate.rate}"
                     android:gravity="center"
-                    tools:text="4.04"
-                    android:currencyText="@{viewModel.rate.rate}"/>
+                    tools:text="4.04" />
 
             </LinearLayout>
 

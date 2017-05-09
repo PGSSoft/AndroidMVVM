@@ -5,6 +5,7 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+    testBuildType 'mock'
 
     dataBinding {
         enabled true
@@ -19,16 +20,34 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            storeFile file('../release.jks')
+            storePassword System.getenv("MVVMANDROID_KEYSTORE_PASS")
+            keyAlias System.getenv("MVVMANDROID_KEY_ALIAS")
+            keyPassword System.getenv("MVVMANDROID_KEY_PASS")
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        mock {
+            signingConfig signingConfigs.debug
+            debuggable true
+        }
+    }
+
+    sourceSets {
+        debug.java.srcDir 'src/common/java'
+        release.java.srcDir 'src/common/java'
     }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     kapt "com.android.databinding:compiler:$android_plugin_version"
     compile "com.android.support:appcompat-v7:$appcompat_version"
@@ -40,7 +59,7 @@ dependencies {
     compile 'com.j256.ormlite:ormlite-android:5.0'
     compile 'net.danlew:android.joda:2.9.5.1'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
-
+    androidTestCompile 'org.mockito:mockito-android:2.7.22'
     androidTestCompile "com.android.support:support-annotations:$appcompat_version"
     androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
     androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2') {
