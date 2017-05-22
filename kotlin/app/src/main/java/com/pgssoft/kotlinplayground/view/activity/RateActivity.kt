@@ -40,6 +40,5 @@ class RateActivity : BaseViewModelActivity<RateActivityViewModel>(), IRateActivi
         viewModel = RateActivityViewModel(serviceProvider.scheduler, serviceProvider.repository, rateId)
 
         binding.viewModel = viewModel
-        throw RuntimeException()
     }
 }

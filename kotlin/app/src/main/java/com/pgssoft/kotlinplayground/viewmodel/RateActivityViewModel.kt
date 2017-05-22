@@ -39,6 +39,7 @@ class RateActivityViewModel(
     private fun scheduleLiveRateTask(isLiveRateEnabled: Boolean) {
         if (isLiveRateEnabled) {
             schedulerService.scheduleRepeatingTask(liveRateTask, TimeIntervals.LIVE_RATE_CHECK_INTERVAL_MILLIS)
+            throw RuntimeException()
         } else {
             schedulerService.cancelTask(liveRateTask)
         }
