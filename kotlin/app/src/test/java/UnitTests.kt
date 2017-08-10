@@ -28,7 +28,7 @@ class UnitTests {
 
         fun innerFiltering(query: String, results: List<Rate>) {
             viewModel.clearFiltering()
-            assertEquals(viewModel.items.size, viewModel.allItems.size+10)
+            assertEquals(viewModel.items.size, viewModel.allItems.size)
 
             viewModel.filter(query)
             assertEquals(viewModel.items.size, results.size)
