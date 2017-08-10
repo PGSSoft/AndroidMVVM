@@ -1,25 +1,20 @@
 
 
-import android.support.test.runner.AndroidJUnit4
 import com.pgssoft.kotlinplayground.model.db.Rate
 import com.pgssoft.kotlinplayground.service.mock.MockApi
 import com.pgssoft.kotlinplayground.service.mock.MockRepository
 import com.pgssoft.kotlinplayground.viewmodel.MainActivityViewModel
 import com.pgssoft.kotlinplayground.viewmodel.iface.IMainActivityAccess
-import org.hamcrest.Matchers
-import org.hamcrest.Matchers.equalTo
-import org.hamcrest.Matchers.hasItem
-import org.junit.Assert
+import org.hamcrest.CoreMatchers
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertThat
 import org.junit.Test
-import org.junit.runner.RunWith
 import org.mockito.Mockito.*
 
 /**
  * Created by bstokrocki on 21-Apr-17.
  */
 
-@RunWith(AndroidJUnit4::class)
 class UnitTests {
 
     @Test
@@ -33,13 +28,13 @@ class UnitTests {
 
         fun innerFiltering(query: String, results: List<Rate>) {
             viewModel.clearFiltering()
-            assertThat(viewModel.items.size, equalTo(viewModel.allItems.size))
+            assertEquals(viewModel.items.size, viewModel.allItems.size+10)
 
             viewModel.filter(query)
-            assertThat(viewModel.items.size, equalTo(results.size))
+            assertEquals(viewModel.items.size, results.size)
 
             for (item in viewModel.items) {
-                assertThat(results, hasItem(item))
+                assertThat(results, CoreMatchers.hasItem(item))
             }
         }
 
@@ -63,7 +58,7 @@ class UnitTests {
         api.success = true
         for (i in 1..10) {
             api.successCallback = {
-                Assert.assertThat(repo.saveTablesCount, Matchers.equalTo(i))
+                assertEquals(repo.saveTablesCount, i)
                 verify(activityAccess, times(i)).displayRates(viewModel)
                 verify(activityAccess, times(i)).hideProgressIndication()
             }
@@ -83,7 +78,7 @@ class UnitTests {
         api.success = false
         for (i in 1..10) {
             api.failureCallback = {
-                Assert.assertThat(repo.saveTablesCount, Matchers.equalTo(0))
+                assertEquals(repo.saveTablesCount, 0)
                 verify(activityAccess, never()).displayRates(viewModel)
                 verify(activityAccess, never()).displayRates(viewModel)
                 verify(activityAccess, times(i)).hideProgressIndication()
